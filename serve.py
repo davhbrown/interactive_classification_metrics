@@ -240,10 +240,10 @@ PLOT_CHECKS2 = ["Confusion Matrix", "MCC-F1 Curve", "Accuracy"]
 PLOT_CHECKS3 = ["Recall", "Precision", "F1", "MCC*"]
 
 checks1 = CheckboxGroup(
-    labels=PLOT_CHECKS1, active=[0, 1], margin=(-45, 5, 5, 50)
+    labels=PLOT_CHECKS1, active=[0, 1], margin=(-45, 5, 5, 70)
 )  # top right bottom left
 checks2 = CheckboxGroup(labels=PLOT_CHECKS2, active=[0], margin=(-45, 5, 5, -200))
-checks3 = CheckboxGroup(labels=PLOT_CHECKS3, active=[], margin=(-45, 5, 5, -150))
+checks3 = CheckboxGroup(labels=PLOT_CHECKS3, active=[], margin=(-45, 5, 5, -160))
 
 checks1.on_change("active", checkbox_callback)
 checks2.on_change("active", checkbox_callback)
@@ -331,7 +331,7 @@ plot_pr = figure(
     title="PR Curve",
     x_axis_label="True Positive Rate (Recall)",
     y_axis_label="Precision",
-    y_range=[0.0, 1.0],
+    y_range=[0.0, 1.04],
     plot_height=300,
     plot_width=325,
     toolbar_location=None,
