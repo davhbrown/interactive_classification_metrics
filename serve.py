@@ -55,7 +55,7 @@ cmap.insert(0, cmap.pop())
 # Interactive GUI Sliders
 slider_n0 = Slider(
     title="N",
-    start=10,
+    start=50,
     end=5000,
     step=10,
     value=DEFAULT_N,
@@ -91,7 +91,7 @@ slider_skew0 = Slider(
 )
 slider_n1 = Slider(
     title="N",
-    start=10,
+    start=50,
     end=5000,
     step=10,
     value=DEFAULT_N,
