@@ -242,7 +242,7 @@ PLOT_CHECKS3 = ["Recall", "Precision", "F1", "MCC*"]
 checks1 = CheckboxGroup(
     labels=PLOT_CHECKS1, active=[0, 1], margin=(-45, 5, 5, 70)
 )  # top right bottom left
-checks2 = CheckboxGroup(labels=PLOT_CHECKS2, active=[0], margin=(-45, 5, 5, -200))
+checks2 = CheckboxGroup(labels=PLOT_CHECKS2, active=[0], margin=(-45, 5, 5, -190))
 checks3 = CheckboxGroup(labels=PLOT_CHECKS3, active=[], margin=(-45, 5, 5, -160))
 
 checks1.on_change("active", checkbox_callback)
