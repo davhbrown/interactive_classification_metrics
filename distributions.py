@@ -1,6 +1,7 @@
 import numpy as np
 from bokeh.models import ColumnDataSource
 from scipy.stats.kde import gaussian_kde
+from scipy.stats import skewnorm
 
 
 class NormalDistData:
@@ -10,17 +11,19 @@ class NormalDistData:
     """
 
     # Values must be (from) ColumnDataSource for interactivity to work
-    def __init__(self, n: int, mean: float, sd: float):
+    def __init__(self, n: int, mean: float, sd: float, skew: float):
         self._n = n
         self._mean = mean
         self._sd = sd
+        self._skew = skew
         raw_data, kde_curve = self._create_distribution()
         self.raw_data = ColumnDataSource(data=raw_data)
         self.kde_curve = ColumnDataSource(data=kde_curve)
 
     def _norm_dist(self) -> np.ndarray:
         """Generate normally distributed data with specified mean and standard deviation."""
-        return np.random.normal(self._mean, self._sd, self._n)
+        #return np.random.normal(self._mean, self._sd, self._n)
+        return skewnorm.rvs(self._skew, self._mean, self._sd, size=self._n)
 
     def _create_distribution(self):
         """Return normally distributed data and a KDE curve from distribution parameters.
@@ -65,4 +68,9 @@ class NormalDistData:
     def sd_handler(self, attr, old, new):
         """Changes data & kde_curve in response to sd Slider."""
         self._sd = new
+        self.raw_data.data, self.kde_curve.data = self._create_distribution()
+
+    def skew_handler(self, attr, old, new):
+        """Changes data & kde_curve in response to skew Slider."""
+        self._skew = new
         self.raw_data.data, self.kde_curve.data = self._create_distribution()

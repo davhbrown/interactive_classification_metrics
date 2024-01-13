@@ -39,8 +39,9 @@ DEFAULT_N = 100
 DEFAULT_MEAN_0 = 20.0
 DEFAULT_MEAN_1 = 22.0
 DEFAULT_SD = 3.0
-dist0 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_0, DEFAULT_SD)
-dist1 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_1, DEFAULT_SD)
+DEFAULT_SKEW = 0.0
+dist0 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_0, DEFAULT_SD, DEFAULT_SKEW)
+dist1 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_1, DEFAULT_SD, DEFAULT_SKEW)
 
 # Calculate all classification metrics
 metrics = Metrics(dist0, dist1)
@@ -58,7 +59,7 @@ slider_n0 = Slider(
     end=5000,
     step=10,
     value=DEFAULT_N,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[0],
 )
 slider_mean0 = Slider(
@@ -67,7 +68,7 @@ slider_mean0 = Slider(
     end=50,
     step=0.5,
     value=DEFAULT_MEAN_0,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[0],
 )
 slider_sd0 = Slider(
@@ -76,7 +77,16 @@ slider_sd0 = Slider(
     end=20,
     step=0.1,
     value=DEFAULT_SD,
-    max_width=150,
+    max_width=125,
+    bar_color=cmap[0],
+)
+slider_skew0 = Slider(
+    title="Skew",
+    start=-20,
+    end=20,
+    step=1,
+    value=DEFAULT_SKEW,
+    max_width=75,
     bar_color=cmap[0],
 )
 slider_n1 = Slider(
@@ -85,7 +95,7 @@ slider_n1 = Slider(
     end=5000,
     step=10,
     value=DEFAULT_N,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[2],
 )
 slider_mean1 = Slider(
@@ -94,7 +104,7 @@ slider_mean1 = Slider(
     end=50,
     step=0.5,
     value=DEFAULT_MEAN_1,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[2],
 )
 slider_sd1 = Slider(
@@ -103,7 +113,16 @@ slider_sd1 = Slider(
     end=20,
     step=0.1,
     value=DEFAULT_SD,
-    max_width=150,
+    max_width=125,
+    bar_color=cmap[2],
+)
+slider_skew1 = Slider(
+    title="Skew",
+    start=-20,
+    end=20,
+    step=1,
+    value=DEFAULT_SKEW,
+    max_width=75,
     bar_color=cmap[2],
 )
 threshold_slider = Slider(
@@ -112,7 +131,7 @@ threshold_slider = Slider(
     value=metrics.roc_thresholds.data["thresholds"].min(),
     step=0.001,
     title="classification threshold",
-    max_width=150,
+    max_width=125,
     bar_color=cmap[4],
     margin=(5, 5, 5, 50),
 )
@@ -150,7 +169,17 @@ slider_sd0.on_change(
     metrics.metrics_handler,
     threshold_slider_range_handler,
 )
-
+slider_skew0.on_change(
+    "value",
+    dist0.skew_handler,
+    metrics.threshold_line_y_handler,
+    metrics.roc_curve_handler,
+    metrics.pr_curve_handler,
+    metrics.cm_handler,
+    metrics.mcc_f1_curve_handler,
+    metrics.metrics_handler,
+    threshold_slider_range_handler,
+)
 slider_n1.on_change(
     "value",
     dist1.n_handler,
@@ -174,6 +203,17 @@ slider_mean1.on_change(
 slider_sd1.on_change(
     "value",
     dist1.sd_handler,
+    metrics.threshold_line_y_handler,
+    metrics.roc_curve_handler,
+    metrics.pr_curve_handler,
+    metrics.cm_handler,
+    metrics.mcc_f1_curve_handler,
+    metrics.metrics_handler,
+    threshold_slider_range_handler,
+)
+slider_skew1.on_change(
+    "value",
+    dist1.skew_handler,
     metrics.threshold_line_y_handler,
     metrics.roc_curve_handler,
     metrics.pr_curve_handler,
@@ -530,9 +570,9 @@ txt = Paragraph(
 # ====================================================================
 # Arrange plots and widgets in a layout
 spacer = Spacer(width=200, height=1)
-slider_row1 = row(slider_n0, slider_mean0, slider_sd0, spacer)
+slider_row1 = row(slider_n0, slider_mean0, slider_sd0, slider_skew0, spacer)
 slider_row2 = row(
-    slider_n1, slider_mean1, slider_sd1, threshold_slider, checks1, checks2, checks3
+    slider_n1, slider_mean1, slider_sd1, slider_skew1, threshold_slider, checks1, checks2, checks3
 )
 graph_row1 = row(plot_distributions, plot_roc, auc_bar, plot_pr)
 graph_row2 = row(
