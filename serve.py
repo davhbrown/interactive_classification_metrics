@@ -220,8 +220,8 @@ plot_distributions = figure(
     y_axis_label="Count",
     plot_height=300,
     plot_width=325,
-    toolbar_location=None
-    # output_backend='webgl'
+    toolbar_location=None,
+    output_backend="webgl",
 )
 plot_distributions.line(
     "x", "y", source=dist0.kde_curve, line_color=cmap[0], line_width=2
@@ -241,8 +241,8 @@ plot_roc = figure(
     y_axis_label="True Positive Rate (Recall)",
     plot_height=300,
     plot_width=325,
-    toolbar_location=None
-    # output_backend='webgl'
+    toolbar_location=None,
+    output_backend="webgl",
 )
 plot_roc.line(
     "x", "y_upper", source=metrics.roc_curve, line_width=2, line_color=cmap[1]
@@ -334,8 +334,8 @@ plot_cm = figure(
     y_range=[1.5, -0.5],
     plot_height=300,
     plot_width=325,
-    toolbar_location=None
-    # output_backend='webgl'
+    toolbar_location=None,
+    output_backend="webgl",
 )
 cm_cmap = list(reversed(Purples[256]))[256 // 5 : -256 // 4]
 mapper = LinearColorMapper(palette=cm_cmap)
@@ -372,8 +372,8 @@ plot_mcc_f1 = figure(
     y_range=[0, 1],
     plot_height=300,
     plot_width=325,
-    toolbar_location=None
-    # output_backend='webgl'
+    toolbar_location=None,
+    output_backend="webgl",
 )
 plot_mcc_f1.line("x", "y", source=metrics.mcc_f1_pts, line_width=2, line_color=cmap[1])
 plot_mcc_f1.line(
@@ -391,7 +391,7 @@ acc_bar = figure(
     plot_height=300,
     plot_width=92,
     toolbar_location=None,
-    # output_backend="webgl",
+    output_backend="webgl",
 )
 acc_bar.vbar(
     x=0.5, top="accuracy", source=metrics.metrics, width=0.5, fill_color=cmap[1]
@@ -412,7 +412,7 @@ recall_bar = figure(
     plot_height=300,
     plot_width=92,
     toolbar_location=None,
-    # output_backend="webgl",
+    output_backend="webgl",
 )
 recall_bar.vbar(
     x=0.5, top="recall", source=metrics.metrics, width=0.5, fill_color=cmap[1]
@@ -433,7 +433,7 @@ precision_bar = figure(
     plot_height=300,
     plot_width=92,
     toolbar_location=None,
-    # output_backend="webgl",
+    output_backend="webgl",
 )
 precision_bar.vbar(
     x=0.5, top="precision", source=metrics.metrics, width=0.5, fill_color=cmap[1]
@@ -456,7 +456,7 @@ f1_bar = figure(
     plot_height=300,
     plot_width=92,
     toolbar_location=None,
-    # output_backend="webgl",
+    output_backend="webgl",
 )
 f1_bar.vbar(
     x=0.5,
@@ -481,7 +481,7 @@ mcc_bar = figure(
     plot_height=300,
     plot_width=92,
     toolbar_location=None,
-    # output_backend="webgl",
+    output_backend="webgl",
 )
 mcc_bar.vbar(
     x=0.5,
