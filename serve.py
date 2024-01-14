@@ -73,7 +73,7 @@ slider_mean0 = Slider(
 )
 slider_sd0 = Slider(
     title="SD",
-    start=0.001,
+    start=0.1,
     end=20,
     step=0.1,
     value=DEFAULT_SD,
@@ -82,8 +82,8 @@ slider_sd0 = Slider(
 )
 slider_skew0 = Slider(
     title="Skew",
-    start=-20,
-    end=20,
+    start=-50,
+    end=50,
     step=1,
     value=DEFAULT_SKEW,
     max_width=75,
@@ -109,7 +109,7 @@ slider_mean1 = Slider(
 )
 slider_sd1 = Slider(
     title="SD",
-    start=0.001,
+    start=0.1,
     end=20,
     step=0.1,
     value=DEFAULT_SD,
@@ -118,8 +118,8 @@ slider_sd1 = Slider(
 )
 slider_skew1 = Slider(
     title="Skew",
-    start=-20,
-    end=20,
+    start=-50,
+    end=50,
     step=1,
     value=DEFAULT_SKEW,
     max_width=75,
