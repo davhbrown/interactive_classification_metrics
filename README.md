@@ -1,7 +1,7 @@
 # Interactive classification metrics
 Get an intuitive sense for the ROC curve and other binary classification metrics with interactive visualization.
 
-![example image](interactive_metrics.png?raw=true)
+![example animation](interactive_metrics.gif)
 
 ## Install & Run
 1. Clone this repo `git clone https://github.com/davhbrown/interactive-classification-metrics.git`
