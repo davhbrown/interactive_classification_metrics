@@ -39,8 +39,9 @@ DEFAULT_N = 100
 DEFAULT_MEAN_0 = 20.0
 DEFAULT_MEAN_1 = 22.0
 DEFAULT_SD = 3.0
-dist0 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_0, DEFAULT_SD)
-dist1 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_1, DEFAULT_SD)
+DEFAULT_SKEW = 0.0
+dist0 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_0, DEFAULT_SD, DEFAULT_SKEW)
+dist1 = NormalDistData(DEFAULT_N, DEFAULT_MEAN_1, DEFAULT_SD, DEFAULT_SKEW)
 
 # Calculate all classification metrics
 metrics = Metrics(dist0, dist1)
@@ -54,11 +55,11 @@ cmap.insert(0, cmap.pop())
 # Interactive GUI Sliders
 slider_n0 = Slider(
     title="N",
-    start=10,
+    start=50,
     end=5000,
     step=10,
     value=DEFAULT_N,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[0],
 )
 slider_mean0 = Slider(
@@ -67,25 +68,34 @@ slider_mean0 = Slider(
     end=50,
     step=0.5,
     value=DEFAULT_MEAN_0,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[0],
 )
 slider_sd0 = Slider(
     title="SD",
-    start=0.001,
+    start=0.1,
     end=20,
     step=0.1,
     value=DEFAULT_SD,
-    max_width=150,
+    max_width=125,
+    bar_color=cmap[0],
+)
+slider_skew0 = Slider(
+    title="Skew",
+    start=-50,
+    end=50,
+    step=1,
+    value=DEFAULT_SKEW,
+    max_width=75,
     bar_color=cmap[0],
 )
 slider_n1 = Slider(
     title="N",
-    start=10,
+    start=50,
     end=5000,
     step=10,
     value=DEFAULT_N,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[2],
 )
 slider_mean1 = Slider(
@@ -94,16 +104,25 @@ slider_mean1 = Slider(
     end=50,
     step=0.5,
     value=DEFAULT_MEAN_1,
-    max_width=150,
+    max_width=125,
     bar_color=cmap[2],
 )
 slider_sd1 = Slider(
     title="SD",
-    start=0.001,
+    start=0.1,
     end=20,
     step=0.1,
     value=DEFAULT_SD,
-    max_width=150,
+    max_width=125,
+    bar_color=cmap[2],
+)
+slider_skew1 = Slider(
+    title="Skew",
+    start=-50,
+    end=50,
+    step=1,
+    value=DEFAULT_SKEW,
+    max_width=75,
     bar_color=cmap[2],
 )
 threshold_slider = Slider(
@@ -112,7 +131,7 @@ threshold_slider = Slider(
     value=metrics.roc_thresholds.data["thresholds"].min(),
     step=0.001,
     title="classification threshold",
-    max_width=150,
+    max_width=125,
     bar_color=cmap[4],
     margin=(5, 5, 5, 50),
 )
@@ -150,7 +169,17 @@ slider_sd0.on_change(
     metrics.metrics_handler,
     threshold_slider_range_handler,
 )
-
+slider_skew0.on_change(
+    "value",
+    dist0.skew_handler,
+    metrics.threshold_line_y_handler,
+    metrics.roc_curve_handler,
+    metrics.pr_curve_handler,
+    metrics.cm_handler,
+    metrics.mcc_f1_curve_handler,
+    metrics.metrics_handler,
+    threshold_slider_range_handler,
+)
 slider_n1.on_change(
     "value",
     dist1.n_handler,
@@ -182,6 +211,17 @@ slider_sd1.on_change(
     metrics.metrics_handler,
     threshold_slider_range_handler,
 )
+slider_skew1.on_change(
+    "value",
+    dist1.skew_handler,
+    metrics.threshold_line_y_handler,
+    metrics.roc_curve_handler,
+    metrics.pr_curve_handler,
+    metrics.cm_handler,
+    metrics.mcc_f1_curve_handler,
+    metrics.metrics_handler,
+    threshold_slider_range_handler,
+)
 
 threshold_slider.on_change(
     "value",
@@ -200,10 +240,10 @@ PLOT_CHECKS2 = ["Confusion Matrix", "MCC-F1 Curve", "Accuracy"]
 PLOT_CHECKS3 = ["Recall", "Precision", "F1", "MCC*"]
 
 checks1 = CheckboxGroup(
-    labels=PLOT_CHECKS1, active=[0, 1], margin=(-45, 5, 5, 50)
+    labels=PLOT_CHECKS1, active=[0, 1], margin=(-45, 5, 5, 70)
 )  # top right bottom left
-checks2 = CheckboxGroup(labels=PLOT_CHECKS2, active=[0], margin=(-45, 5, 5, -200))
-checks3 = CheckboxGroup(labels=PLOT_CHECKS3, active=[], margin=(-45, 5, 5, -150))
+checks2 = CheckboxGroup(labels=PLOT_CHECKS2, active=[0], margin=(-45, 5, 5, -190))
+checks3 = CheckboxGroup(labels=PLOT_CHECKS3, active=[], margin=(-45, 5, 5, -160))
 
 checks1.on_change("active", checkbox_callback)
 checks2.on_change("active", checkbox_callback)
@@ -274,7 +314,7 @@ auc_bar = figure(
     plot_height=300,
     plot_width=92,
     toolbar_location=None,
-    output_backend="webgl",
+    # output_backend="webgl",
 )
 auc_bar.vbar(x=0.5, top="auc", source=metrics.metrics, width=0.5, fill_color=cmap[1])
 auc_bar.y_range.start = 0.0
@@ -291,11 +331,11 @@ plot_pr = figure(
     title="PR Curve",
     x_axis_label="True Positive Rate (Recall)",
     y_axis_label="Precision",
-    y_range=[0.0, 1.0],
+    y_range=[0.0, 1.04],
     plot_height=300,
     plot_width=325,
     toolbar_location=None,
-    output_backend="webgl",
+    # output_backend="webgl",
 )
 plot_pr.line("x", "y_upper", source=metrics.pr_curve, line_width=2, line_color=cmap[1])
 plot_pr.line(
@@ -367,7 +407,7 @@ plot_cm.text(
 # Cao et al. 2020
 plot_mcc_f1 = figure(
     title="MCC-F1",
-    x_axis_label="F1 Score",
+    x_axis_label="F1-Score",
     y_axis_label="Unit Normalized MCC",
     y_range=[0, 1],
     plot_height=300,
@@ -517,7 +557,7 @@ mcc_bar.visible = 3 in checks3.active
 
 # Add text blurb
 # "Cao et al. 2020 https://arxiv.org/abs/2006.11278"
-blurb = "*MCC here is Unit Normalized MCC as in Cao et al. 2020"
+blurb = "*MCC is Unit Normalized MCC as in Cao et al. 2020"
 txt = Paragraph(
     text=blurb,
     style=dict({"font-style": "italic", "font-size": "12px"}),
@@ -530,9 +570,16 @@ txt = Paragraph(
 # ====================================================================
 # Arrange plots and widgets in a layout
 spacer = Spacer(width=200, height=1)
-slider_row1 = row(slider_n0, slider_mean0, slider_sd0, spacer)
+slider_row1 = row(slider_n0, slider_mean0, slider_sd0, slider_skew0, spacer)
 slider_row2 = row(
-    slider_n1, slider_mean1, slider_sd1, threshold_slider, checks1, checks2, checks3
+    slider_n1,
+    slider_mean1,
+    slider_sd1,
+    slider_skew1,
+    threshold_slider,
+    checks1,
+    checks2,
+    checks3,
 )
 graph_row1 = row(plot_distributions, plot_roc, auc_bar, plot_pr)
 graph_row2 = row(
