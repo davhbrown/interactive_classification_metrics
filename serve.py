@@ -407,7 +407,7 @@ plot_cm.text(
 # Cao et al. 2020
 plot_mcc_f1 = figure(
     title="MCC-F1",
-    x_axis_label="F1 Score",
+    x_axis_label="F1-Score",
     y_axis_label="Unit Normalized MCC",
     y_range=[0, 1],
     plot_height=300,
@@ -557,7 +557,7 @@ mcc_bar.visible = 3 in checks3.active
 
 # Add text blurb
 # "Cao et al. 2020 https://arxiv.org/abs/2006.11278"
-blurb = "*MCC here is Unit Normalized MCC as in Cao et al. 2020"
+blurb = "*MCC is Unit Normalized MCC as in Cao et al. 2020"
 txt = Paragraph(
     text=blurb,
     style=dict({"font-style": "italic", "font-size": "12px"}),
