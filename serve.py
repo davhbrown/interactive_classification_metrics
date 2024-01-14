@@ -314,7 +314,7 @@ auc_bar = figure(
     plot_height=300,
     plot_width=92,
     toolbar_location=None,
-    output_backend="webgl",
+    # output_backend="webgl",
 )
 auc_bar.vbar(x=0.5, top="auc", source=metrics.metrics, width=0.5, fill_color=cmap[1])
 auc_bar.y_range.start = 0.0
@@ -335,7 +335,7 @@ plot_pr = figure(
     plot_height=300,
     plot_width=325,
     toolbar_location=None,
-    output_backend="webgl",
+    # output_backend="webgl",
 )
 plot_pr.line("x", "y_upper", source=metrics.pr_curve, line_width=2, line_color=cmap[1])
 plot_pr.line(
@@ -572,7 +572,14 @@ txt = Paragraph(
 spacer = Spacer(width=200, height=1)
 slider_row1 = row(slider_n0, slider_mean0, slider_sd0, slider_skew0, spacer)
 slider_row2 = row(
-    slider_n1, slider_mean1, slider_sd1, slider_skew1, threshold_slider, checks1, checks2, checks3
+    slider_n1,
+    slider_mean1,
+    slider_sd1,
+    slider_skew1,
+    threshold_slider,
+    checks1,
+    checks2,
+    checks3,
 )
 graph_row1 = row(plot_distributions, plot_roc, auc_bar, plot_pr)
 graph_row2 = row(
