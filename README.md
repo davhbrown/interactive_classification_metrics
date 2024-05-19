@@ -21,4 +21,5 @@ This opens a web browser where you can use the tool.
 - **Cao C, Chicco D, Hoffman MM (2020) The MCC-F1 curve: a performance evaluation technique for binary classification. [arXiv:2006.11278](https://arxiv.org/abs/2006.11278)**
 - [arthurcgusmao](https://github.com/arthurcgusmao), the author of [py-mcc-f1](https://github.com/arthurcgusmao/py-mcc-f1) used here
 - Chicco D, Tötsch N, Jurman G (2021) The Matthews correlation coefficient (MCC) is more reliable than balanced accuracy, bookmaker informedness, and markedness in two-class confusion matrix evaluation. _BioData Mining_ 14:13, 1-22.
-- the spirit of [this tweet](https://twitter.com/adad8m/status/1474754752193830912?t=NBSL0j_DSfBDQfag39YpbQ&s=19)
+- Chicco D, Jurman G (2023) The Matthews correlation coefficient (MCC) should replace the ROC AUC as the standard metric for assessing binary classification. _BioData Mining_ 16:4, 1-23.
+- **the spirit of [this tweet](https://twitter.com/adad8m/status/1474754752193830912?t=NBSL0j_DSfBDQfag39YpbQ&s=19)**
