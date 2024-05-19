@@ -21,7 +21,7 @@ def threshold_slider_range_handler(attr, old, new):
 def checkbox_callback(attr, old, new):
     """Update plot visibility based on checkbox status."""
     plot_roc.visible = 0 in checks1.active
-    auc_bar.visible = 1 in checks1.active
+    roc_auc_bar.visible = 1 in checks1.active
     plot_pr.visible = 2 in checks1.active
     pr_auc_bar.visible = 3 in checks1.active
 
@@ -309,7 +309,7 @@ plot_roc.varea(
 
 
 # ROC AUC Bar
-auc_bar = figure(
+roc_auc_bar = figure(
     title="ROC AUC",
     x_range=[0, 1],
     plot_height=300,
@@ -317,14 +317,14 @@ auc_bar = figure(
     toolbar_location=None,
     # output_backend="webgl",
 )
-auc_bar.vbar(x=0.5, top="auc", source=metrics.metrics, width=0.5, fill_color=cmap[1])
-auc_bar.y_range.start = 0.0
-auc_bar.y_range.end = 1.0
-auc_bar.xgrid.grid_line_color = None
-auc_bar.xaxis.major_label_text_font_size = "0pt"
-auc_bar.xaxis.major_tick_line_color = None
-auc_bar.xaxis.minor_tick_line_color = None
-auc_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
+roc_auc_bar.vbar(x=0.5, top="roc_auc", source=metrics.metrics, width=0.5, fill_color=cmap[1])
+roc_auc_bar.y_range.start = 0.0
+roc_auc_bar.y_range.end = 1.0
+roc_auc_bar.xgrid.grid_line_color = None
+roc_auc_bar.xaxis.major_label_text_font_size = "0pt"
+roc_auc_bar.xaxis.major_tick_line_color = None
+roc_auc_bar.xaxis.minor_tick_line_color = None
+roc_auc_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
 
 
 # PR Curve
@@ -561,7 +561,7 @@ mcc_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="das
 
 # Initialize plot visibility
 plot_roc.visible = 0 in checks1.active
-auc_bar.visible = 1 in checks1.active
+roc_auc_bar.visible = 1 in checks1.active
 plot_pr.visible = 2 in checks1.active
 pr_auc_bar.visible = 3 in checks1.active
 
@@ -601,7 +601,7 @@ slider_row2 = row(
     checks2,
     checks3,
 )
-graph_row1 = row(plot_distributions, plot_roc, auc_bar, plot_pr, pr_auc_bar)
+graph_row1 = row(plot_distributions, plot_roc, roc_auc_bar, plot_pr, pr_auc_bar)
 graph_row2 = row(
     plot_cm, plot_mcc_f1, acc_bar, recall_bar, precision_bar, f1_bar, mcc_bar, txt
 )

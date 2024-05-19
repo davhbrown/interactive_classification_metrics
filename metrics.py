@@ -201,7 +201,7 @@ class Metrics:
         y_pred = (y_score >= thresh).astype("int")
 
         # Get metrics
-        auc = roc_auc_score(y_true, y_score)
+        roc_auc = roc_auc_score(y_true, y_score)
         avg_prec = average_precision_score(y_true, y_score) # TODO: consdier more sophisticated metric, e.g. baseline adjustment
         accuracy = accuracy_score(y_true, y_pred)
         recall = recall_score(y_true, y_pred)
@@ -210,7 +210,7 @@ class Metrics:
         mcc = matthews_corrcoef(y_true, y_pred)
         mcc_norm = (mcc + 1) / 2
 
-        metrics = ColumnDataSource(data=dict(auc=[auc]))
+        metrics = ColumnDataSource(data=dict(roc_auc=[roc_auc]))
         metrics.data["avg_prec"] = [avg_prec]
         metrics.data["accuracy"] = [accuracy]
         metrics.data["recall"] = [recall]
