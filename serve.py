@@ -23,6 +23,7 @@ def checkbox_callback(attr, old, new):
     plot_roc.visible = 0 in checks1.active
     auc_bar.visible = 1 in checks1.active
     plot_pr.visible = 2 in checks1.active
+    pr_auc_bar.visible = 3 in checks1.active
 
     plot_cm.visible = 0 in checks2.active
     plot_mcc_f1.visible = 1 in checks2.active
@@ -235,7 +236,7 @@ threshold_slider.on_change(
 
 
 # Checkboxes for toggling individual plots
-PLOT_CHECKS1 = ["ROC Curve", "AUC", "PR Curve"]
+PLOT_CHECKS1 = ["ROC Curve", "ROC AUC", "PR Curve", "PR AUC"]
 PLOT_CHECKS2 = ["Confusion Matrix", "MCC-F1 Curve", "Accuracy"]
 PLOT_CHECKS3 = ["Recall", "Precision", "F1", "MCC*"]
 
@@ -309,7 +310,7 @@ plot_roc.varea(
 
 # ROC AUC Bar
 auc_bar = figure(
-    title="AUC",
+    title="ROC AUC",
     x_range=[0, 1],
     plot_height=300,
     plot_width=92,
@@ -363,6 +364,24 @@ plot_pr.varea(
     fill_color=cmap[1],
     alpha=0.1,
 )
+
+# PR AUC Bar
+pr_auc_bar = figure(
+    title="PR AUC",
+    x_range=[0, 1],
+    plot_height=300,
+    plot_width=92,
+    toolbar_location=None,
+    # output_backend="webgl",
+)
+pr_auc_bar.vbar(x=0.5, top="avg_prec", source=metrics.metrics, width=0.5, fill_color=cmap[1])
+pr_auc_bar.y_range.start = 0.0
+pr_auc_bar.y_range.end = 1.0
+pr_auc_bar.xgrid.grid_line_color = None
+pr_auc_bar.xaxis.major_label_text_font_size = "0pt"
+pr_auc_bar.xaxis.major_tick_line_color = None
+pr_auc_bar.xaxis.minor_tick_line_color = None
+pr_auc_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
 
 
 # Confusion Matrix
@@ -544,6 +563,7 @@ mcc_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="das
 plot_roc.visible = 0 in checks1.active
 auc_bar.visible = 1 in checks1.active
 plot_pr.visible = 2 in checks1.active
+pr_auc_bar.visible = 3 in checks1.active
 
 plot_cm.visible = 0 in checks2.active
 plot_mcc_f1.visible = 1 in checks2.active
@@ -581,7 +601,7 @@ slider_row2 = row(
     checks2,
     checks3,
 )
-graph_row1 = row(plot_distributions, plot_roc, auc_bar, plot_pr)
+graph_row1 = row(plot_distributions, plot_roc, auc_bar, plot_pr, pr_auc_bar)
 graph_row2 = row(
     plot_cm, plot_mcc_f1, acc_bar, recall_bar, precision_bar, f1_bar, mcc_bar, txt
 )

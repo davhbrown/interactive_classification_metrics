@@ -5,7 +5,7 @@ from mcc_f1 import mcc_f1_curve
 from sklearn.metrics import (accuracy_score, confusion_matrix, f1_score,
                              matthews_corrcoef, precision_recall_curve,
                              precision_score, recall_score, roc_auc_score,
-                             roc_curve)
+                             roc_curve, average_precision_score)
 
 from distributions import NormalDistData
 
@@ -202,6 +202,7 @@ class Metrics:
 
         # Get metrics
         auc = roc_auc_score(y_true, y_score)
+        avg_prec = average_precision_score(y_true, y_score) # TODO: consdier more sophisticated metric, e.g. baseline adjustment
         accuracy = accuracy_score(y_true, y_pred)
         recall = recall_score(y_true, y_pred)
         precision = precision_score(y_true, y_pred, zero_division=1)
@@ -210,6 +211,7 @@ class Metrics:
         mcc_norm = (mcc + 1) / 2
 
         metrics = ColumnDataSource(data=dict(auc=[auc]))
+        metrics.data["avg_prec"] = [avg_prec]
         metrics.data["accuracy"] = [accuracy]
         metrics.data["recall"] = [recall]
         metrics.data["precision"] = [precision]
