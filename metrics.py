@@ -2,10 +2,11 @@ import numpy as np
 import pandas as pd
 from bokeh.models import ColumnDataSource
 from mcc_f1 import mcc_f1_curve
-from sklearn.metrics import (accuracy_score, confusion_matrix, f1_score,
+from sklearn.metrics import (accuracy_score, average_precision_score,
+                             classification_report, confusion_matrix, f1_score,
                              matthews_corrcoef, precision_recall_curve,
                              precision_score, recall_score, roc_auc_score,
-                             roc_curve, average_precision_score)
+                             roc_curve)
 
 from distributions import NormalDistData
 
@@ -162,12 +163,12 @@ class Metrics:
         thresh = self.threshold_line.data["x"][0]
         y_pred = (y_score >= thresh).astype("int")
         # Create confusion matrix data structure for plotting
-        cm = confusion_matrix(y_true, y_pred)
+        cm = confusion_matrix(y_true, y_pred)  # result: [[tn, fp], [fn, tp]]
         df = pd.DataFrame(
             {
                 "x": [0, 1, 0, 1],
                 "y": [1, 1, 0, 0],
-                "cm_values": np.flip(cm, axis=0).flatten(),
+                "cm_values": np.flip(cm, axis=0).flatten(),  # result: [fn, tp, tn, fp]
                 "value_coord_x": [0, 1, 0, 1],
                 "value_coord_y": [1, 1, 0, 0],
             }
@@ -194,27 +195,36 @@ class Metrics:
 
     def _get_metrics(self):
         # Convert for readability within this function
-        y_true = self.y_true.data["data"]
+        y_true = self.y_true.data["data"].astype("int")
         y_score = self.y_score.data["data"]
 
         thresh = self.threshold_line.data["x"][0]
         y_pred = (y_score >= thresh).astype("int")
 
+        cr = classification_report(y_true, y_pred, output_dict=True, zero_division=0.0)
+
         # Get metrics
         roc_auc = roc_auc_score(y_true, y_score)
-        avg_prec = average_precision_score(y_true, y_score) # TODO: consdier more sophisticated metric, e.g. baseline adjustment
+        avg_prec = average_precision_score(
+            y_true, y_score
+        )  # TODO: consdier more sophisticated metric, e.g. baseline adjustment
         accuracy = accuracy_score(y_true, y_pred)
         recall = recall_score(y_true, y_pred)
+        specificity = cr["0"]["recall"]
         precision = precision_score(y_true, y_pred, zero_division=1)
+        npv = cr["0"]["precision"]
         f1 = f1_score(y_true, y_pred)
         mcc = matthews_corrcoef(y_true, y_pred)
         mcc_norm = (mcc + 1) / 2
 
+        # Package
         metrics = ColumnDataSource(data=dict(roc_auc=[roc_auc]))
         metrics.data["avg_prec"] = [avg_prec]
         metrics.data["accuracy"] = [accuracy]
         metrics.data["recall"] = [recall]
+        metrics.data["specificity"] = [specificity]
         metrics.data["precision"] = [precision]
+        metrics.data["npv"] = [npv]
         metrics.data["f1"] = [f1]
         metrics.data["mcc_norm"] = [mcc_norm]
         return metrics

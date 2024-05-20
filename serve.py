@@ -28,11 +28,13 @@ def checkbox_callback(attr, old, new):
     plot_cm.visible = 0 in checks2.active
     plot_mcc_f1.visible = 1 in checks2.active
     acc_bar.visible = 2 in checks2.active
+    recall_bar.visible = 3 in checks2.active
 
-    recall_bar.visible = 0 in checks3.active
+    spec_bar.visible = 0 in checks3.active
     precision_bar.visible = 1 in checks3.active
-    f1_bar.visible = 2 in checks3.active
-    mcc_bar.visible = 3 in checks3.active
+    npv_bar.visible = 2 in checks3.active
+    f1_bar.visible = 3 in checks3.active
+    mcc_bar.visible = 4 in checks3.active
 
 
 # Initial distribution settings
@@ -237,8 +239,8 @@ threshold_slider.on_change(
 
 # Checkboxes for toggling individual plots
 PLOT_CHECKS1 = ["ROC Curve", "ROC AUC", "PR Curve", "PR AUC"]
-PLOT_CHECKS2 = ["Confusion Matrix", "MCC-F1 Curve", "Accuracy"]
-PLOT_CHECKS3 = ["Recall", "Precision", "F1", "MCC*"]
+PLOT_CHECKS2 = ["Confusion Matrix", "MCC-F1 Curve", "Accuracy", "Recall"]
+PLOT_CHECKS3 = ["Specificty", "Precision", "NPV", "F1", "MCC*"]
 
 checks1 = CheckboxGroup(
     labels=PLOT_CHECKS1, active=[0, 1], margin=(-45, 5, 5, 70)
@@ -317,14 +319,18 @@ roc_auc_bar = figure(
     toolbar_location=None,
     # output_backend="webgl",
 )
-roc_auc_bar.vbar(x=0.5, top="roc_auc", source=metrics.metrics, width=0.5, fill_color=cmap[1])
+roc_auc_bar.vbar(
+    x=0.5, top="roc_auc", source=metrics.metrics, width=0.5, fill_color=cmap[1]
+)
 roc_auc_bar.y_range.start = 0.0
 roc_auc_bar.y_range.end = 1.0
 roc_auc_bar.xgrid.grid_line_color = None
 roc_auc_bar.xaxis.major_label_text_font_size = "0pt"
 roc_auc_bar.xaxis.major_tick_line_color = None
 roc_auc_bar.xaxis.minor_tick_line_color = None
-roc_auc_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
+roc_auc_bar.line(
+    [0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed"
+)
 
 
 # PR Curve
@@ -374,7 +380,9 @@ pr_auc_bar = figure(
     toolbar_location=None,
     # output_backend="webgl",
 )
-pr_auc_bar.vbar(x=0.5, top="avg_prec", source=metrics.metrics, width=0.5, fill_color=cmap[1])
+pr_auc_bar.vbar(
+    x=0.5, top="avg_prec", source=metrics.metrics, width=0.5, fill_color=cmap[1]
+)
 pr_auc_bar.y_range.start = 0.0
 pr_auc_bar.y_range.end = 1.0
 pr_auc_bar.xgrid.grid_line_color = None
@@ -484,6 +492,26 @@ recall_bar.xaxis.major_tick_line_color = None
 recall_bar.xaxis.minor_tick_line_color = None
 recall_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
 
+# Specificity (TNR) Bar
+spec_bar = figure(
+    title="Spec.",
+    x_range=[0, 1],
+    plot_height=300,
+    plot_width=92,
+    toolbar_location=None,
+    # output_backend="webgl",
+)
+spec_bar.vbar(
+    x=0.5, top="specificity", source=metrics.metrics, width=0.5, fill_color=cmap[1]
+)
+spec_bar.y_range.start = 0.0
+spec_bar.y_range.end = 1.0
+spec_bar.xgrid.grid_line_color = None
+spec_bar.xaxis.major_label_text_font_size = "0pt"
+spec_bar.xaxis.major_tick_line_color = None
+spec_bar.xaxis.minor_tick_line_color = None
+spec_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
+
 
 # Precision Bar
 precision_bar = figure(
@@ -506,6 +534,24 @@ precision_bar.xaxis.minor_tick_line_color = None
 precision_bar.line(
     [0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed"
 )
+
+# NPV Bar
+npv_bar = figure(
+    title="NPV",
+    x_range=[0, 1],
+    plot_height=300,
+    plot_width=92,
+    toolbar_location=None,
+    # output_backend="webgl",
+)
+npv_bar.vbar(x=0.5, top="npv", source=metrics.metrics, width=0.5, fill_color=cmap[1])
+npv_bar.y_range.start = 0.0
+npv_bar.y_range.end = 1.0
+npv_bar.xgrid.grid_line_color = None
+npv_bar.xaxis.major_label_text_font_size = "0pt"
+npv_bar.xaxis.major_tick_line_color = None
+npv_bar.xaxis.minor_tick_line_color = None
+npv_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
 
 
 # F1-Score Bar
@@ -568,23 +614,13 @@ pr_auc_bar.visible = 3 in checks1.active
 plot_cm.visible = 0 in checks2.active
 plot_mcc_f1.visible = 1 in checks2.active
 acc_bar.visible = 2 in checks2.active
+recall_bar.visible = 3 in checks2.active
 
-recall_bar.visible = 0 in checks3.active
+spec_bar.visible = 0 in checks3.active
 precision_bar.visible = 1 in checks3.active
-f1_bar.visible = 2 in checks3.active
-mcc_bar.visible = 3 in checks3.active
-
-
-# Add text blurb
-# "Cao et al. 2020 https://arxiv.org/abs/2006.11278"
-blurb = "*MCC is Unit Normalized MCC as in Cao et al. 2020"
-txt = Paragraph(
-    text=blurb,
-    style=dict({"font-style": "italic", "font-size": "12px"}),
-    width=200,
-    height=200,
-    margin=(265, 5, 5, 25),
-)  # top right bottom left
+npv_bar.visible = 2 in checks3.active
+f1_bar.visible = 3 in checks3.active
+mcc_bar.visible = 4 in checks3.active
 
 
 # ====================================================================
@@ -603,7 +639,15 @@ slider_row2 = row(
 )
 graph_row1 = row(plot_distributions, plot_roc, roc_auc_bar, plot_pr, pr_auc_bar)
 graph_row2 = row(
-    plot_cm, plot_mcc_f1, acc_bar, recall_bar, precision_bar, f1_bar, mcc_bar, txt
+    plot_cm,
+    plot_mcc_f1,
+    acc_bar,
+    recall_bar,
+    spec_bar,
+    precision_bar,
+    npv_bar,
+    f1_bar,
+    mcc_bar,
 )
 layout = column(slider_row1, slider_row2, graph_row1, graph_row2)
 
