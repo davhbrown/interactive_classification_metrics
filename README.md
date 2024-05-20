@@ -5,6 +5,8 @@ Get an intuitive sense for the ROC curve and other binary classification metrics
 
 This is a teaching and understanding tool. Change the statistics of the normal distirbutions or the classification threshold to see how it affects different classification metrics. [Read the blog post](https://www.glidergrid.xyz/post-archive/understanding-the-roc-curve-and-beyond) for more information.
 
+<sub><sup>*</sup> Matthew's Correlation Coefficient (MCC) represented as unit-normalized MCC as in [Cao et al. 2020](https://arxiv.org/abs/2006.11278).</sub>
+
 ## Install & Run
 1. Clone this repo `git clone https://github.com/davhbrown/interactive-classification-metrics.git`
 1. `cd interactive-classification-metrics`
