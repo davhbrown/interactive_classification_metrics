@@ -207,7 +207,7 @@ class Metrics:
         roc_auc = roc_auc_score(y_true, y_score)
         avg_prec = average_precision_score(
             y_true, y_score
-        )  # TODO: consdier more sophisticated metric, e.g. baseline adjustment
+        )
         accuracy = accuracy_score(y_true, y_pred)
         recall = recall_score(y_true, y_pred)
         specificity = cr["0"]["recall"]
