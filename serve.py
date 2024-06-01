@@ -389,7 +389,14 @@ pr_auc_bar.xgrid.grid_line_color = None
 pr_auc_bar.xaxis.major_label_text_font_size = "0pt"
 pr_auc_bar.xaxis.major_tick_line_color = None
 pr_auc_bar.xaxis.minor_tick_line_color = None
-pr_auc_bar.line([0, 1], [0.5, 0.5], line_width=1, line_color="grey", line_dash="dashed")
+pr_auc_bar.line(
+    "x",
+    "y_lower",
+    source=metrics.pr_curve,
+    line_width=1,
+    line_color="grey",
+    line_dash="dashed",
+)
 
 
 # Confusion Matrix
