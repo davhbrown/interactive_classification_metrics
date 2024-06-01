@@ -3,7 +3,7 @@ Get an intuitive sense for the ROC curve and other binary classification metrics
 
 ![example animation](https://github.com/davhbrown/db-lake/blob/dd6b1b7694e2c0fb1be2e6ee9e656bb80ed357c3/interactive_metrics.gif)
 
-This is a teaching and understanding tool. Change the statistics of the normal distirbutions or the classification threshold to see how it affects different classification metrics. [Read the blog post](https://www.glidergrid.xyz/post-archive/understanding-the-roc-curve-and-beyond) for more information.
+This is a teaching and understanding tool. Change the statistics of the normal distributions or the classification threshold to see how it affects different classification metrics. [Read the blog post](https://www.glidergrid.xyz/post-archive/understanding-the-roc-curve-and-beyond) for more information.
 
 <sub><sup>*</sup> Matthew's Correlation Coefficient (MCC) represented as unit-normalized MCC as in [Cao et al. 2020](https://arxiv.org/abs/2006.11278).</sub>
 

@@ -1,7 +1,7 @@
 import numpy as np
 from bokeh.io import curdoc
 from bokeh.layouts import Spacer, column, row
-from bokeh.models import CheckboxGroup, LinearColorMapper, Paragraph, Slider
+from bokeh.models import CheckboxGroup, LinearColorMapper, Slider
 from bokeh.palettes import Colorblind8, Purples
 from bokeh.plotting import figure
 from bokeh.transform import transform
