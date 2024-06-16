@@ -1,7 +1,7 @@
 import numpy as np
 from bokeh.models import ColumnDataSource
-from scipy.stats.kde import gaussian_kde
 from scipy.stats import skewnorm
+from scipy.stats.kde import gaussian_kde
 
 
 class NormalDistData:
@@ -22,7 +22,7 @@ class NormalDistData:
 
     def _norm_dist(self) -> np.ndarray:
         """Generate normally distributed data with specified mean and standard deviation."""
-        #return np.random.normal(self._mean, self._sd, self._n)
+        # return np.random.normal(self._mean, self._sd, self._n)
         return skewnorm.rvs(self._skew, self._mean, self._sd, size=self._n)
 
     def _create_distribution(self):
