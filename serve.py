@@ -59,7 +59,7 @@ cmap.insert(0, cmap.pop())
 slider_n0 = Slider(
     title="N",
     start=50,
-    end=5000,
+    end=500,
     step=10,
     value=DEFAULT_N,
     max_width=125,
@@ -95,7 +95,7 @@ slider_skew0 = Slider(
 slider_n1 = Slider(
     title="N",
     start=50,
-    end=5000,
+    end=500,
     step=10,
     value=DEFAULT_N,
     max_width=125,
