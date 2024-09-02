@@ -8,16 +8,30 @@ This is a teaching and understanding tool. Change the statistics of the normal d
 <sub><sup>*</sup> Matthew's Correlation Coefficient (MCC) represented as unit-normalized MCC as in [Cao et al. 2020](https://arxiv.org/abs/2006.11278).</sub>
 
 ## Install & Run
-1. Clone this repo `git clone https://github.com/davhbrown/interactive-classification-metrics.git`
-1. `cd interactive-classification-metrics`
-1. Create a new python environment if you wish. This was developed in Python 3.9.12. Python 3.11+ is not supported.
+
+### From PyPI
+Create a dedicated python environment (recommended).
+```bash
+python3 -m pip install interactive-classification-metrics
+```
+Run with Bokeh server locally from the command line:
+```bash
+run-app
+```
+Opens a web browser where you can use the application.
+
+### By cloning the repo
+1. Clone this repo `git clone https://github.com/davhbrown/interactive_classification_metrics.git`
+1. `cd interactive_classification_metrics`
+1. Create a dedicated python environment is recommended
 1. `pip install -r requirements.txt`
 
-#### Run with Bokeh server locally
-From the command line:
-`bokeh serve --show serve.py`
+Run with Bokeh server locally from the command line:
+```bash
+bokeh serve --show serve.py
+```
 
-This opens a web browser where you can use the tool.
+Opens a web browser where you can use the application.
 
 ## Inspired by
 - **Cao C, Chicco D, Hoffman MM (2020) The MCC-F1 curve: a performance evaluation technique for binary classification. [
