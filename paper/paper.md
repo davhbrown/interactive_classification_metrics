@@ -10,6 +10,7 @@ authors:
   - name: David H. Brown
     orcid: 0000-0002-0969-8711
     affiliation: 1
+    corresponding: true
   - name: Davide Chicco
     orcid: 0000-0001-9655-7142
     affiliation: "2, 3"
@@ -21,7 +22,7 @@ affiliations:
  - name: Institute of Health Policy Management and Evaluation, University of Toronto, Toronto, Ontario, Canada
    index: 3
 date: 29 September 2024
-bibliography: paper.bib # TODO: paper.big or elsewhere?
+bibliography: paper.bib
 ---
 
 # Summary
@@ -49,20 +50,18 @@ at https://github.com/davhbrown/interactive_classification_metrics.
 More people enter the machine learning field every year through a variety of
 paths. In the United States alone, “Data Scientist” job growth is expected to
 outpace the average over the next decade, with similar growth in other
-countries `[@BLS:2024]` (U.S. Bureau of Labor Statistics, 2024, Kaggle 2022). User-friendly,
+countries `[@Kaggle:2022; @BLS:2024]`. User-friendly,
 low barrier to entry libraries like scikit-learn are used widely across the
 industry, and fields beyond statistics increasingly use machine learning
 tools, but are not always familiar with basic best practices like avoiding
 data leakage, not to mention careful interpretation of evaluation metrics
-(Liu et al. 2019, Kaggle, 2022, Kapoor & Narayanan 2023, Checkroud et al.
-2024).
+`[@Liu:2019; @Kaggle:2022; @Kapoor:2023; @Checkroud:2024]`.
 
 Classification models are a fundamental tool in machine learning. The quality
 of a classification model is evaluated by comparing model predictions with
 ground truth targets, forming sections of the confusion matrix, and resulting
 in the True Positive Rate, True Negative Rate, Positive Predictive Value, and
-Negative Predictive Value (NPV). From these four “basic rates” (Chicco &
-Jurman 2023), further evaluation metrics have been derived, each summarizing
+Negative Predictive Value (NPV). From these four “basic rates” `[@Chicco:2023]`, further evaluation metrics have been derived, each summarizing
 different aspects of a model’s predictive performance. Common metrics have
 specific caveats known to experts, but not immediately apparent to novices,
 and can even be overlooked by experienced modelers. For example,
@@ -72,11 +71,10 @@ capture all four quadrants of the confusion matrix, in practice they are often
 reported on their own or as a single number that adequately describes a
 model’s predictive quality.
 
-Literature details the shortcomings with ROC curves (Chicco & Jurman 2023) and
-singular metrics (Powers 2010); has evaluated less common metrics like
-bookmaker informedness and Matthews Correlation Coefficient (MCC; Chicco et
-al. 2021, Chicco & Jurman 2023); and even proposed novel graphical tools like
-the MCC-F1 curve (Cao et al. 2020). However, insights from scholarly work take
+Literature details the shortcomings with ROC curves `[@Chicco:2023]` and
+singular metrics `[@Powers:2020]`; has evaluated less common metrics like
+bookmaker informedness and Matthews Correlation Coefficient (MCC) `[@Chicco:2021; @Chicco:2023]`; and even proposed novel graphical tools like
+the MCC-F1 curve `[@Cao:2020]`. However, insights from scholarly work take
 time to enter widespread educational material, and are not immediately obvious
 from static examples or mathematical formulae alone.
 
@@ -122,7 +120,7 @@ is 0.83, indicating that overall the area covered by the PR curve is small.
 
 # Conclusion
 Visualizing results is a pivotal task in many fields, and scientific
-visualization is a cornerstone of modern data science (Midway, 2020).
+visualization is a cornerstone of modern data science `[@Midway:2020]`.
 Software tools can make this task easier for researchers and students, but to
 the best of our knowledge, no Python package for visualizing binary
 classification results in an interactive, exploratory way exists. We fill this
@@ -131,20 +129,6 @@ overhead of cleaning data and training models. Instead, it allows users to
 focus on understanding the evaluation metrics themselves, and how these
 metrics change in relation to each other as the user alters the statistics of
 the two distributions.
-
-# Citations
-
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
 
 # Acknowledgements
 
@@ -177,3 +161,5 @@ entirely outside of their employment with any entity.
 DHB: conceptualization, software implementation, application design, writing
 
 DC: application design, domain expertise, scholarly integration, writing
+
+# References
