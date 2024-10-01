@@ -50,11 +50,11 @@ is publicly available for free under the MIT license on
 More people enter the machine learning field every year through a variety of
 paths. In the United States alone, “Data Scientist” job growth is expected to
 outpace the average over the next decade, with similar growth in other
-countries [@Kaggle:2022; @BLS:2024]. User-friendly,
-low barrier to entry libraries like scikit-learn are used widely across the
-industry, and fields beyond statistics increasingly use machine learning
-tools, but are not always familiar with basic best practices like avoiding
-data leakage, not to mention careful interpretation of evaluation metrics
+countries [@Kaggle:2022; @BLS:2024]. User-friendly, low barrier to entry
+libraries like scikit-learn are used widely across the industry, and fields
+beyond statistics increasingly use machine learning tools, but practitioners
+are not always familiar with basic best practices like avoiding data leakage,
+not to mention careful interpretation of evaluation metrics
 [@Liu:2019; @Kaggle:2022; @Kapoor:2023; @Checkroud:2024].
 
 Classification models are a fundamental tool in machine learning. The quality
@@ -95,7 +95,7 @@ with a single command, which opens a web browser for interaction. It runs on
 the user’s local machine using bokeh server and standard data/machine learning
 Python libraries for underlying computation.
 
-![Screenshot of the application with numbered steps overlaid (red circles). Users control 9 interactive sliders at the top, and all graphs respond accordingly. The sliders control the sample size (N), mean, standard deviation (SD), and skew of the two distributions (Step 1) that represent the negative (black) and positive class predictions (orange). The properties of these distributions, along with the classification threshold (green; Step 2) control the magnitude and shape of all other plots. Users can also choose to show or hide specific plots with checkboxes (Step 3). Full display shown.\label{fig:1}](Figure1.png)
+![Screenshot of the application with numbered steps overlaid (red circles). Users control 9 interactive sliders at the top, and all graphs respond accordingly. The sliders control the sample size (N), mean, standard deviation (SD), and skew of the two distributions (Step 1) that represent the negative (black) and positive class predictions (orange). The properties of these distributions, along with the classification threshold (green; Step 2), control the magnitude and shape of all other plots. Users can also choose to show or hide specific plots with checkboxes (Step 3). Full display shown.\label{fig:1}](Figure1.png)
 
 A brief animation of the application in use can be seen on
 [GitHub](https://github.com/davhbrown/interactive_classification_metrics). The
@@ -115,11 +115,11 @@ Wikipedia page.
 
 \autoref{fig:2} depicts ICM demonstrating a classic model evaluation mistake:
 using Accuracy alone to evaluate an overfit model trained on an imbalanced
-dataset. A comprehensive look at all available metrics reveal the flaw: with
+dataset. A comprehensive look at all available metrics reveals the flaw: with
 additional information beyond Accuracy and ROC AUC, it is clear that when
 accounting for all four “basic rates”, MCC reveals chance performance
-(MCC = 0.5). Also note that PR AUC=0.9, which could be naively interpreted as
-a good model, but its minimum baseline, driven by the proportion of classes,
+(MCC = 0.5). Also note that PR AUC=0.9 could be naively interpreted as a good
+model, but its minimum baseline, driven by the proportion of classes,
 is 0.83, indicating that overall the area covered by the PR curve is small.
 
 ![The classic flaw of Accuracy on an imbalanced dataset. The negative class (black) has N=100 examples, the positive class (orange) has N=500. The classification threshold (green) is set extremely low to represent a model that predicts everything as the positive class, yet achieves over 80% Accuracy due to the proportions of the two classes in the dataset.\label{fig:2}](Figure2.png)
