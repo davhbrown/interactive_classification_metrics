@@ -136,7 +136,7 @@ focus on understanding the evaluation metrics themselves, and how these
 metrics change in relation to each other as the user alters the statistics of
 the two distributions.
 
-# Acknowledgements
+# Acknowledgments
 
 The authors thank Arthur Colombini Gusmão, the author of the `py-mcc-f1`
 library used in this application.
