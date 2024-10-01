@@ -21,7 +21,7 @@ affiliations:
    index: 2
  - name: Institute of Health Policy Management and Evaluation, University of Toronto, Toronto, Ontario, Canada
    index: 3
-date: 29 September 2024
+date: 30 September 2024
 bibliography: paper.bib
 ---
 
@@ -41,9 +41,9 @@ are: (1) to aid practitioners in the ever-expanding machine learning field to
 choose the most appropriate evaluation metrics for their classification
 problem; (2) to promote careful attention to interpretation that is required
 even in the simplest scenarios like binary classification. Our software
-is publicly available for free under the MIT license on PyPI at
-https://pypi.org/project/interactive-classification-metrics/ and on GitHub
-at https://github.com/davhbrown/interactive_classification_metrics.
+is publicly available for free under the MIT license on
+[PyPI](https://pypi.org/project/interactive-classification-metrics/) and
+[GitHub](https://github.com/davhbrown/interactive_classification_metrics).
 
 # Statement of need
 
@@ -55,14 +55,14 @@ low barrier to entry libraries like scikit-learn are used widely across the
 industry, and fields beyond statistics increasingly use machine learning
 tools, but are not always familiar with basic best practices like avoiding
 data leakage, not to mention careful interpretation of evaluation metrics
-`[@Liu:2019; @Kaggle:2022; @Kapoor:2023; @Checkroud:2024]`.
+[@Liu:2019; @Kaggle:2022; @Kapoor:2023; @Checkroud:2024].
 
 Classification models are a fundamental tool in machine learning. The quality
 of a classification model is evaluated by comparing model predictions with
 ground truth targets, forming sections of the confusion matrix, and resulting
 in the True Positive Rate, True Negative Rate, Positive Predictive Value, and
 Negative Predictive Value (NPV). From these four “basic rates”
-`[@Chicco:2023]`, further evaluation metrics have been derived, each
+[@Chicco:2023], further evaluation metrics have been derived, each
 summarizing different aspects of a model’s predictive performance. Common
 metrics have specific caveats known to experts, but not immediately apparent
 to novices, and can even be overlooked by experienced modelers. For example,
@@ -73,10 +73,10 @@ reported on their own or as a single number that adequately describes a
 model’s predictive quality.
 
 Literature details the shortcomings with Receiver Operating Characteristic
-(ROC) curves `[@Chicco:2023]` and singular metrics `[@Powers:2020]`; has
+(ROC) curves [@Chicco:2023] and singular metrics [@Powers:2020]; has
 evaluated less common metrics like bookmaker informedness and Matthews
-Correlation Coefficient (MCC) `[@Chicco:2021; @Chicco:2023]`; and even
-proposed novel graphical tools like the MCC-F1 curve `[@Cao:2020]`. However,
+Correlation Coefficient (MCC) [@Chicco:2021; @Chicco:2023]; and even
+proposed novel graphical tools like the MCC-F1 curve [@Cao:2020]. However,
 insights from scholarly work take time to enter widespread educational
 material, and are not immediately obvious from static examples or mathematical
 formulae alone.
@@ -126,7 +126,7 @@ is 0.83, indicating that overall the area covered by the PR curve is small.
 
 # Conclusion
 Visualizing results is a pivotal task in many fields, and scientific
-visualization is a cornerstone of modern data science `[@Midway:2020]`.
+visualization is a cornerstone of modern data science [@Midway:2020].
 Software tools can make this task easier for researchers and students, but to
 the best of our knowledge, no Python package for visualizing binary
 classification results in an interactive, exploratory way exists. We fill this
