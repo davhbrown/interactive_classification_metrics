@@ -41,7 +41,7 @@ are: (1) to aid practitioners in the ever-expanding machine learning field to
 choose the most appropriate evaluation metrics for their classification
 problem; (2) to promote careful attention to interpretation that is required
 even in the simplest scenarios like binary classification. Our software
-library is publicly available for free under the MIT license on PyPI at
+is publicly available for free under the MIT license on PyPI at
 https://pypi.org/project/interactive-classification-metrics/ and on GitHub
 at https://github.com/davhbrown/interactive_classification_metrics.
 
@@ -61,22 +61,25 @@ Classification models are a fundamental tool in machine learning. The quality
 of a classification model is evaluated by comparing model predictions with
 ground truth targets, forming sections of the confusion matrix, and resulting
 in the True Positive Rate, True Negative Rate, Positive Predictive Value, and
-Negative Predictive Value (NPV). From these four “basic rates” `[@Chicco:2023]`, further evaluation metrics have been derived, each summarizing
-different aspects of a model’s predictive performance. Common metrics have
-specific caveats known to experts, but not immediately apparent to novices,
-and can even be overlooked by experienced modelers. For example,
+Negative Predictive Value (NPV). From these four “basic rates”
+`[@Chicco:2023]`, further evaluation metrics have been derived, each
+summarizing different aspects of a model’s predictive performance. Common
+metrics have specific caveats known to experts, but not immediately apparent
+to novices, and can even be overlooked by experienced modelers. For example,
 interpretation of Accuracy, Recall, and most other metrics depend on class
 (im)balance and comparison to each other. While these metrics do not claim to
 capture all four quadrants of the confusion matrix, in practice they are often
 reported on their own or as a single number that adequately describes a
 model’s predictive quality.
 
-Literature details the shortcomings with ROC curves `[@Chicco:2023]` and
-singular metrics `[@Powers:2020]`; has evaluated less common metrics like
-bookmaker informedness and Matthews Correlation Coefficient (MCC) `[@Chicco:2021; @Chicco:2023]`; and even proposed novel graphical tools like
-the MCC-F1 curve `[@Cao:2020]`. However, insights from scholarly work take
-time to enter widespread educational material, and are not immediately obvious
-from static examples or mathematical formulae alone.
+Literature details the shortcomings with Receiver Operating Characteristic
+(ROC) curves `[@Chicco:2023]` and singular metrics `[@Powers:2020]`; has
+evaluated less common metrics like bookmaker informedness and Matthews
+Correlation Coefficient (MCC) `[@Chicco:2021; @Chicco:2023]`; and even
+proposed novel graphical tools like the MCC-F1 curve `[@Cao:2020]`. However,
+insights from scholarly work take time to enter widespread educational
+material, and are not immediately obvious from static examples or mathematical
+formulae alone.
 
 It is essential that the machine learning community have every pedagogical
 resource at its disposal to solidify a deep understanding of and intuition for
@@ -94,16 +97,19 @@ Python libraries for underlying computation.
 
 ![Figure 1. Screenshot of the application with numbered steps overlaid (red circles). Users control 9 interactive sliders at the top, and all graphs respond accordingly. The sliders control the sample size (N), mean, standard deviation (SD), and skew of the two distributions (Step 1) that represent the negative (black) and positive class predictions (orange). The properties of these distributions, along with the classification threshold (green; Step 2) control the magnitude and shape of all other plots. Users can also choose to show or hide specific plots with checkboxes (Step 3). Full display shown.\label{fig:1}](Figure1.png)
 
-A brief animation of the application in use can be seen on GitHub. The full
-list of plots, evaluation metrics, and their acronyms are: Class
+A brief animation of the application in use can be seen on
+[GitHub](https://github.com/davhbrown/interactive_classification_metrics). The
+full list of plots, evaluation metrics, and their acronyms are: Class
 distributions, ROC curve, Area Under the ROC curve (ROC AUC), Precision-Recall
 (PR) curve, Area Under the PR curve (PR AUC), Confusion Matrix, Matthews
 Correlation Coefficient-F1 (MCC-F1) curve, Accuracy, Recall, Specificity,
 Precision, Negative Predictive Value (NPV), F1-Score, and MCC (unit
 normalized). Different fields have different naming conventions for the same
 metric; for example, Recall is also called the True Positive Rate,
-Sensitivity, or Hit Rate. Wikipedia has a comprehensive list of alternative
-naming conventions on the confusion matrix page.
+Sensitivity, or Hit Rate. A comprehensive list of alternative
+naming conventions is on the
+[confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix#Table_of_confusion)
+Wikipedia page.
 
 # Example Scenario
 
@@ -133,7 +139,7 @@ the two distributions.
 # Acknowledgements
 
 The authors thank Arthur Colombini Gusmão, the author of the `py-mcc-f1`
-software library used in this application.
+library used in this application.
 
 The work of D.C. is funded by the European Union – Next Generation EU
 programme, in the context of the National Recovery and Resilience Plan,
