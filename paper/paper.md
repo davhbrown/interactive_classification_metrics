@@ -50,7 +50,7 @@ at https://github.com/davhbrown/interactive_classification_metrics.
 More people enter the machine learning field every year through a variety of
 paths. In the United States alone, “Data Scientist” job growth is expected to
 outpace the average over the next decade, with similar growth in other
-countries `[@Kaggle:2022; @BLS:2024]`. User-friendly,
+countries [@Kaggle:2022; @BLS:2024]. User-friendly,
 low barrier to entry libraries like scikit-learn are used widely across the
 industry, and fields beyond statistics increasingly use machine learning
 tools, but are not always familiar with basic best practices like avoiding
