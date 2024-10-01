@@ -15,7 +15,7 @@ authors:
     orcid: 0000-0001-9655-7142
     affiliation: "2, 3"
 affiliations:
- - name: Independent Researcher, USA
+ - name: Independent Researcher, Austin, Texas, USA
    index: 1
  - name: Dipartimento di Informatica Sistemistica e Comunicazione, Università di Milano-Bicocca, Milan, Italy
    index: 2
@@ -95,7 +95,7 @@ with a single command, which opens a web browser for interaction. It runs on
 the user’s local machine using bokeh server and standard data/machine learning
 Python libraries for underlying computation.
 
-![Figure 1. Screenshot of the application with numbered steps overlaid (red circles). Users control 9 interactive sliders at the top, and all graphs respond accordingly. The sliders control the sample size (N), mean, standard deviation (SD), and skew of the two distributions (Step 1) that represent the negative (black) and positive class predictions (orange). The properties of these distributions, along with the classification threshold (green; Step 2) control the magnitude and shape of all other plots. Users can also choose to show or hide specific plots with checkboxes (Step 3). Full display shown.\label{fig:1}](Figure1.png)
+![Screenshot of the application with numbered steps overlaid (red circles). Users control 9 interactive sliders at the top, and all graphs respond accordingly. The sliders control the sample size (N), mean, standard deviation (SD), and skew of the two distributions (Step 1) that represent the negative (black) and positive class predictions (orange). The properties of these distributions, along with the classification threshold (green; Step 2) control the magnitude and shape of all other plots. Users can also choose to show or hide specific plots with checkboxes (Step 3). Full display shown.\label{fig:1}](Figure1.png)
 
 A brief animation of the application in use can be seen on
 [GitHub](https://github.com/davhbrown/interactive_classification_metrics). The
@@ -122,7 +122,7 @@ accounting for all four “basic rates”, MCC reveals chance performance
 a good model, but its minimum baseline, driven by the proportion of classes,
 is 0.83, indicating that overall the area covered by the PR curve is small.
 
-![Figure 2. The classic flaw of Accuracy on an imbalanced dataset. The negative class (black) has N=100 examples, the positive class (orange) has N=500. The classification threshold (green) is set extremely low to represent a model that predicts everything as the positive class, yet achieves over 80% Accuracy due to the proportions of the two classes in the dataset.\label{fig:2}](Figure2.png)
+![The classic flaw of Accuracy on an imbalanced dataset. The negative class (black) has N=100 examples, the positive class (orange) has N=500. The classification threshold (green) is set extremely low to represent a model that predicts everything as the positive class, yet achieves over 80% Accuracy due to the proportions of the two classes in the dataset.\label{fig:2}](Figure2.png)
 
 # Conclusion
 Visualizing results is a pivotal task in many fields, and scientific
