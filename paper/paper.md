@@ -68,7 +68,7 @@ metrics have specific caveats known to experts, but not immediately apparent
 to novices, and can even be overlooked by experienced modelers. For example,
 interpretation of Accuracy, Recall, and most other metrics depend on class
 (im)balance and comparison to each other. While these metrics do not claim to
-capture all four quadrants of the confusion matrix, in practice they are often
+guarantee that all four "basic rates" are high, in practice they are often
 reported on their own or as a single number that adequately describes a
 model’s predictive quality.
 
